@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History | 72 BPSC PYQ · Target100 | by ConceptX</title>
+<style>
+  :root {
+    --bg: #0e1117;
+    --surface: #1a1f2e;
+    --card: #222736;
+    --border: #2e3650;
+    --accent: #4a9eff;
+    --accent2: #229ED9;
+    --text: #e8eaf0;
+    --muted: #8b93b0;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --green-bg: #1a2e1f;
+    --red-bg: #2e1a1a;
+    --green-border: #27ae60;
+    --red-border: #c0392b;
+    --amber: #f39c12;
+    --amber-bg: #2a1e08;
+    --amber-border: #c87a10;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* TOP BAR */
+  .top-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .tg-dot {
+    width: 36px; height: 36px;
+    background: var(--accent2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .tg-dot svg { width: 20px; height: 20px; fill: white; }
+  .top-title { flex: 1; }
+  .top-title h1 { font-size: 15px; font-weight: 600; }
+  .top-title p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .lang-sw {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .lang-sw button {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .lang-sw button.active { background: var(--accent2); color: white; }
+
+  /* BRAND STRIP */
+  .brand-strip {
+    background: #0d1e35;
+    border-bottom: 2px solid var(--accent2);
+    padding: 7px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand-name { font-size: 13px; font-weight: 700; color: var(--accent2); letter-spacing: 0.3px; }
+  .brand-tag  { font-size: 11px; color: var(--muted); background: rgba(74,158,255,0.1); border: 1px solid rgba(74,158,255,0.2); padding: 3px 10px; border-radius: 20px; }
+
+  /* PROGRESS + TIMER */
+  .progress-wrap { padding: 0 20px 12px; background: var(--surface); }
+  .prog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    padding-top: 10px;
+    gap: 8px;
+  }
+  .prog-label { flex: 1; }
+  .prog-pct   { flex-shrink: 0; }
+  .timer-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 11px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    flex-shrink: 0;
+    min-width: 62px;
+    justify-content: center;
+    transition: color 0.3s, border-color 0.3s, background 0.3s;
+    letter-spacing: 0.5px;
+  }
+  .timer-pill.warn  { color: var(--amber); border-color: var(--amber-border); background: var(--amber-bg); }
+  .timer-pill.alarm { color: var(--red);   border-color: var(--red-border);   background: var(--red-bg);
+                      animation: blink 0.7s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.45} }
+  .timer-icon { font-size: 11px; }
+  .prog-track { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .prog-fill  { height: 100%; background: var(--accent2); border-radius: 2px; transition: width 0.4s ease; }
+
+  /* MAIN */
+  .main { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
+
+  .topic-pill {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #1a2340;
+    color: var(--accent);
+    border: 1px solid #2a3560;
+    margin-bottom: 12px;
+  }
+  .qno-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: #2a1535;
+    color: #c084fc;
+    border: 1px solid #5a2a7a;
+    margin-left: 7px;
+  }
+
+  /* QUESTION CARD */
+  .qcard {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wm {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%) rotate(-30deg);
+    font-size: 26px; font-weight: 800;
+    color: rgba(34,158,217,0.055);
+    white-space: nowrap; pointer-events: none;
+    user-select: none; z-index: 0; letter-spacing: 1px;
+  }
+  .qcard > *:not(.wm) { position: relative; z-index: 1; }
+  .q-text {
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .stmts {
+    list-style: none;
+    margin: 0 0 18px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+  }
+  .stmts li {
+    font-size: 13.5px;
+    color: #b0b8d0;
+    line-height: 1.6;
+    padding: 5px 0 5px 22px;
+    position: relative;
+  }
+  .stmts li .si { position: absolute; left: 0; color: var(--muted); font-weight: 600; }
+
+  /* OPTIONS */
+  .opts { display: flex; flex-direction: column; gap: 9px; }
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text);
+    text-align: left;
+    transition: all 0.15s;
+    font-family: inherit;
+    width: 100%;
+  }
+  .opt:hover:not(:disabled) { border-color: var(--accent2); background: #1e2a3a; }
+  .opt .lbl {
+    font-weight: 700;
+    color: var(--muted);
+    flex-shrink: 0;
+    min-width: 22px;
+    font-size: 13px;
+  }
+  .opt.correct { background: var(--green-bg); border-color: var(--green-border); color: #a8f0c0; }
+  .opt.correct .lbl { color: var(--green); }
+  .opt.wrong   { background: var(--red-bg);   border-color: var(--red-border);   color: #f0a8a8; }
+  .opt.wrong   .lbl { color: var(--red); }
+  .opt.reveal  { background: var(--green-bg); border-color: var(--green-border); color: #a8f0c0; opacity: 0.55; }
+  .opt.reveal  .lbl { color: var(--green); }
+  .opt.timeout { background: var(--amber-bg); border-color: var(--amber-border); color: #ffd080; opacity: 0.75; }
+  .opt.timeout .lbl { color: var(--amber); }
+  .opt:disabled { cursor: default; }
+
+  /* EXPLANATION */
+  .expl {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #0d1e35;
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: #90c4f0;
+    line-height: 1.65;
+    display: none;
+    white-space: pre-wrap;
+  }
+  .expl.show { display: block; }
+
+  /* NAV */
+  .nav { display: flex; justify-content: space-between; gap: 10px; }
+  .nav button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .nav button:hover:not(:disabled) { border-color: var(--accent2); }
+  .nav button:disabled { opacity: 0.3; cursor: default; }
+  .nav button.nxt { background: var(--accent2); border-color: var(--accent2); color: white; font-weight: 500; }
+  .nav button.nxt:hover { background: #1a8bbf; }
+
+  /* SCORE */
+  .score-wrap {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .score-wrap.show { display: block; }
+  .score-ring {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    border: 4px solid var(--accent2);
+    background: #0d1e35;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .score-num   { font-size: 32px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .score-den   { font-size: 13px; color: var(--muted); }
+  .score-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  .score-sub   { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+  .score-time  { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+  .score-time span { color: var(--accent2); font-weight: 700; }
+  .score-bars  { text-align: left; margin: 0 auto 28px; max-width: 360px; }
+  .bar-row     { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+  .bar-label   { color: var(--muted); width: 130px; flex-shrink: 0; font-size: 12px; }
+  .bar-track   { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .bar-fill    { height: 100%; border-radius: 3px; background: var(--accent2); transition: width 0.8s ease; }
+  .bar-val     { color: var(--text); font-weight: 500; width: 28px; text-align: right; }
+  .restart-btn {
+    padding: 13px 36px;
+    background: var(--accent2);
+    border: none; border-radius: 10px;
+    color: white; font-size: 15px;
+    font-family: inherit; font-weight: 500;
+    cursor: pointer; display: block;
+    margin: 0 auto 14px;
+  }
+  .restart-btn:hover { background: #1a8bbf; }
+  .cta-row {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 10px;
+    margin-top: 10px;
+  }
+  .yt-cta {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #ff0000; color: white;
+    text-decoration: none; padding: 10px 22px;
+    border-radius: 10px; font-size: 14px; font-weight: 600;
+    width: 100%; max-width: 340px; justify-content: center;
+    transition: background 0.2s;
+  }
+  .yt-cta:hover { background: #cc0000; }
+  .tg-cta {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #229ED9; color: white;
+    text-decoration: none; padding: 10px 22px;
+    border-radius: 10px; font-size: 13px; font-weight: 600;
+    width: 100%; max-width: 340px; justify-content: center;
+    transition: background 0.2s;
+  }
+  .tg-cta:hover { background: #1a8bbf; }
+  .tg-cta-2 {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #1a1f2e; color: #229ED9;
+    border: 1px solid #2e3650;
+    text-decoration: none; padding: 10px 22px;
+    border-radius: 10px; font-size: 13px; font-weight: 600;
+    width: 100%; max-width: 340px; justify-content: center;
+    transition: background 0.2s;
+  }
+  .tg-cta-2:hover { background: #0d1e35; border-color: #229ED9; }
+
+  /* FOOTER */
+  .footer { background: var(--surface); border-top: 1px solid var(--border); padding: 18px 20px; text-align: center; margin-top: 10px; }
+  .footer-main { font-size: 14px; font-weight: 700; color: var(--accent2); margin-bottom: 3px; }
+  .footer-sub  { font-size: 12px; color: var(--muted); }
+  .footer-copy { font-size: 11px; color: #3a4260; margin-top: 8px; }
+
+  @media (max-width: 480px) {
+    .top-bar   { padding: 12px 14px; }
+    .main      { padding: 16px 12px 40px; }
+    .qcard     { padding: 16px; }
+    .q-text    { font-size: 14px; }
+    .opt       { font-size: 13px; }
+    .brand-strip { padding: 6px 14px; }
+  }
+
+  /* ═══ ConceptX Content Protection Layer ═══
+     /* VMMoRVukdx4e22/1pYm9/VlcMGx+Fsv4ZPvvpGnyV=y2WN18eGOXZ8kJpbma */
+/* Q1hfMWthZk9oenR6YWNPbHY0eGhURGU3M29wanlqY2p0QzM= */
+/* Q1hfM0VmZnU4Mmp1cGdDS2YyZUJ5VE03Mmk3MkJQYmZtaTE= */
+/* Q1hfejFoVDFJVG5nWFV6bk9zSmRidzBFaGtjT01QT2RJUjY= */
+/* Q1hfd2FjeFVpdUFSVndRMnUwUkQ5Qjd0MVRpWHhBc3NYdnQ= */
+/* ©ConceptX·t.me/ConcepttX·Target100·UNAUTHORIZED_COPY_DETECTED_DFCB3BFA38B6D0B9 */
+  ═══════════════════════════════════════════ */
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a class="tg-dot" href="https://t.me/BPSC_72_100" target="_blank" rel="noopener" title="Join Telegram — BPSC 72 | 100">
+    <!-- Telegram icon -->
+    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  </a>
+  <div class="top-title">
+    <h1 id="top-h1">History Quiz — BPSC LDC Pre 2025</h1>
+    <p id="top-p">10 questions · bilingual · EN / हि</p>
+  </div>
+  <div class="lang-sw">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-hi" onclick="setLang('hi')">हि</button>
+  </div>
+</div>
+
+<!-- BRAND STRIP -->
+<div class="brand-strip">
+  <span class="brand-name">Target100 | by ConceptX</span>
+  <span class="brand-tag">Free Quiz Series</span>
+</div>
+
+<!-- PROGRESS + TIMER -->
+<div class="progress-wrap">
+  <div class="prog-meta">
+    <span class="prog-label" id="prog-label">Question 1 of 10</span>
+    <span class="timer-pill" id="timer-pill"><span class="timer-icon">⏱</span><span id="timer-val">60</span>s</span>
+    <span class="prog-pct" id="prog-pct">10%</span>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:10%"></div></div>
+</div>
+
+<!-- QUIZ MAIN -->
+<div class="main" id="quiz-main">
+  <div>
+    <span class="topic-pill" id="topic-pill"></span>
+    <span class="qno-tag"  id="qno-tag"></span>
+  </div>
+  <div class="qcard">
+    <div class="wm">Target100 | by ConceptX</div>
+    <div class="q-text" id="q-text"></div>
+    <ul class="stmts" id="q-stmts"></ul>
+    <div class="opts" id="q-opts"></div>
+    <div class="expl" id="q-expl"></div>
+  </div>
+  <div class="nav">
+    <button id="prev-btn" onclick="prevQ()">← Prev</button>
+    <button class="nxt" id="next-btn" onclick="nextQ()">Next →</button>
+  </div>
+</div>
+
+<!-- SCORE SCREEN -->
+<div class="score-wrap" id="score-wrap">
+  <div class="score-ring">
+    <span class="score-num" id="s-num">0</span>
+    <span class="score-den">/10</span>
+  </div>
+  <div class="score-title" id="s-title"></div>
+  <div class="score-sub"   id="s-sub"></div>
+  <div class="score-time"  id="s-time"></div>
+  <div class="score-bars"  id="s-bars"></div>
+  <button class="restart-btn" onclick="restart()" id="restart-btn">Restart Quiz</button>
+  <div class="cta-row">
+    <a class="yt-cta" href="https://www.youtube.com/@ConceptX" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      🔔 Subscribe on YouTube — ConceptX
+    </a>
+    <a class="tg-cta" href="https://t.me/BPSC_72_100" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      📢 Join Telegram — BPSC 72 | Target 100
+    </a>
+    <a class="tg-cta-2" href="https://t.me/ConcepttX" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="#229ED9"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      📚 Join Telegram — ConceptX Channel
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-main">Target100 | by ConceptX</div>
+  <div class="footer-sub">72 BPSC PYQ · History · EN/HI · Q.11–20</div>
+  <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap;">
+    <a href="https://t.me/BPSC_72_100" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:5px;color:#229ED9;font-size:12px;font-weight:600;text-decoration:none;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#229ED9"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      t.me/BPSC_72_100
+    </a>
+    <a href="https://t.me/ConcepttX" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:5px;color:#229ED9;font-size:12px;font-weight:600;text-decoration:none;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#229ED9"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-.793.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      t.me/ConcepttX
+    </a>
+  </div>
+  <div class="footer-copy">© ConceptX · Unauthorized copying or redistribution is not permitted</div>
+</div>
+
+<script>
+// Content integrity verification — DO NOT MODIFY
+const _cxzeygm = "Q29uY2VwdFhfVGFyZ2V0MTAwX09BMFM0blY0VEQ2b1pMM0lTbXNi";
+const _cxlsnwu = "Q29uY2VwdFhfVGFyZ2V0MTAwX0NXYjNFYk5PaVM1dlZwY2RqUk5Q";
+const _cxiabsm = "Q29uY2VwdFhfVGFyZ2V0MTAwXzBINXNGbUdrSmRPSU5nYUtWQkll";
+const _cxheaei = "Q29uY2VwdFhfVGFyZ2V0MTAwX1F2V2lBV2lPRHlQbGd2bXRjSU9E";
+const _cxwjtou = "Q29uY2VwdFhfVGFyZ2V0MTAwX1FjaHA2T0c2VUlpaUJ4ZkFRcTJC";
+const _cxhoibj = "Q29uY2VwdFhfVGFyZ2V0MTAwX3RadGJYNGpuaGpmbTVXQUo3RHNL";
+const _cxSig = "VGFyZ2V0MTAwfGJ5Q29uY2VwdFh8dC5tZS9Db25jZXB0dFh8NzJCUFNDfFVuYXV0aG9yaXplZF9yZWRpc3RyaWJ1dGlvbl9wcm9oaWJpdGVk";
+// © ConceptX · All questions encoded. Redistribution without permission is prohibited.
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION DATA  —  BPSC LDC Pre 2025  |  History  Q.11 – Q.20
+───────────────────────────────────────────────────────────────── */
+const Qs = [
+  /* Q11 ─ Ancient History / Bihar Archaeology */
+  {
+    qno: "Q.11",
+    topic: "Ancient — Archaeology", topicHi: "प्राचीन — पुरातत्व",
+    en: {
+      q: "The archaeological site 'Senuar' represents which culture?",
+      stmts: [],
+      opts: [
+        "Neolithic age",
+        "Palaeolithic period",
+        "Megalithic culture",
+        "Neolithic and chalcolithic age"
+      ],
+      expl: `✅ Answer: D — Neolithic and chalcolithic age
+
+Senuar is a key prehistoric site located in Rohtas district, Bihar, on the southern fringe of the Middle Ganga Plain. Excavations here revealed a continuous cultural sequence — from Neolithic to Chalcolithic stages — marked by evidence of early agriculture, copper tools, and pottery.
+
+• The site shows both Neolithic (stone tools, farming villages) and Chalcolithic (copper + stone tool use) layers.
+• It belongs to the Senuwar–Chirand culture complex of Bihar.
+
+📌 Source: B.P. Singh, "Early Farming Communities of the Kaimur: Excavations at Senuwar" (BHU Excavation Report) | ASI Archaeological records`
+    },
+    hi: {
+      q: "पुरातात्विक स्थल 'सेनुआर' किस संस्कृति का प्रतिनिधित्व करता है?",
+      stmts: [],
+      opts: [
+        "नवपाषाण युग",
+        "पुरापाषाण काल",
+        "महापाषाण संस्कृति",
+        "नवपाषाण और ताम्रपाषाण युग"
+      ],
+      expl: `✅ उत्तर: D — नवपाषाण और ताम्रपाषाण युग
+
+सेनुआर बिहार के रोहतास जिले में स्थित एक महत्वपूर्ण प्रागैतिहासिक स्थल है। यहाँ की खुदाई में नवपाषाण काल से लेकर ताम्रपाषाण काल तक की संस्कृतियों के साक्ष्य मिले हैं।
+
+• नवपाषाण काल: पत्थर के औजार, कृषि गाँव।
+• ताम्रपाषाण काल: तांबे और पत्थर के औजार, मृद्भांड।
+• यह सेनुआर-चिरांद संस्कृति परिसर का हिस्सा है।
+
+📌 स्रोत: बी.पी. सिंह, "कैमूर की प्रारम्भिक कृषि समुदाय: सेनुआर उत्खनन" | ASI`
+    },
+    ans: 3
+  },
+
+  /* Q12 ─ Ancient History / Buddhism */
+  {
+    qno: "Q.12",
+    topic: "Ancient — Buddhism", topicHi: "प्राचीन — बौद्ध धर्म",
+    en: {
+      q: "Which of the following statements regarding the Buddhist text 'Vinaya Pitaka' is correct?",
+      stmts: [
+        "It has four main parts.",
+        "Buddhist monks have 227 rules.",
+        "Stories of Buddha's previous lives.",
+        "There are 311 rules for Buddhist nuns."
+      ],
+      opts: [
+        "Only (1) and (2) are correct",
+        "Only (3) and (1) are correct",
+        "Only (2) and (4) are correct",
+        "All of the above are correct"
+      ],
+      expl: `✅ Answer: C — Only (2) and (4) are correct
+
+Analysis of each statement:
+
+• Stmt (1) ❌ WRONG — The Vinaya Pitaka has THREE main sections (not four):
+  1. Suttavibhanga  2. Khandhaka  3. Parivara
+
+• Stmt (2) ✅ CORRECT — Buddhist monks (Bhikkhus) follow 227 Patimokkha rules in the Theravada tradition.
+
+• Stmt (3) ❌ WRONG — Stories of Buddha's previous lives = Jataka tales, which belong to the Sutta Pitaka (Khuddaka Nikaya), NOT Vinaya Pitaka.
+
+• Stmt (4) ✅ CORRECT — Buddhist nuns (Bhikkhunis) follow 311 rules in the Theravada Vinaya.
+
+📌 Source: Wikipedia — Vinaya Pitaka | Patimokkha | Britannica Encyclopedia`
+    },
+    hi: {
+      q: "बौद्ध ग्रंथ 'विनय पिटक' के बारे में निम्नलिखित में से कौन-सा कथन सही है?",
+      stmts: [
+        "इसके चार मुख्य भाग हैं।",
+        "बौद्ध भिक्षुओं के लिए 227 नियम हैं।",
+        "बुद्ध के पूर्वजन्मों की कहानियाँ।",
+        "बौद्ध भिक्षुणियों के लिए 311 नियम हैं।"
+      ],
+      opts: [
+        "केवल (1) और (2) सही हैं",
+        "केवल (3) और (1) सही हैं",
+        "केवल (2) और (4) सही हैं",
+        "उपरोक्त सभी सही हैं"
+      ],
+      expl: `✅ उत्तर: C — केवल (2) और (4) सही हैं
+
+प्रत्येक कथन का विश्लेषण:
+
+• कथन (1) ❌ गलत — विनय पिटक के तीन मुख्य भाग हैं (चार नहीं):
+  1. सुत्तविभंग  2. खंधक  3. परिवार
+
+• कथन (2) ✅ सही — थेरवाद में बौद्ध भिक्षुओं (भिक्खुओं) के लिए 227 पातिमोक्ख नियम हैं।
+
+• कथन (3) ❌ गलत — बुद्ध के पूर्वजन्मों की कहानियाँ = जातक कथाएँ, जो सुत्त पिटक (खुद्दक निकाय) में हैं, विनय पिटक में नहीं।
+
+• कथन (4) ✅ सही — बौद्ध भिक्षुणियों (भिक्खुणियों) के लिए 311 नियम हैं।
+
+📌 स्रोत: Wikipedia — Vinaya Pitaka | Patimokkha | Britannica`
+    },
+    ans: 2
+  },
+
+  /* Q13 ─ Ancient History / Satavahana Dynasty */
+  {
+    qno: "Q.13",
+    topic: "Ancient — Satavahana Dynasty", topicHi: "प्राचीन — सातवाहन वंश",
+    en: {
+      q: "Which Satavahana dynasty ruler is credited with extending the Satavahana Empire up to Magadha region?",
+      stmts: [],
+      opts: [
+        "Gautamiputra Satakarni",
+        "Vashishthiputra Pulumavi",
+        "Satakarni First",
+        "Apilak"
+      ],
+      expl: `✅ Answer: A — Gautamiputra Satakarni
+
+Gautamiputra Satakarni (c. 78–102 CE) was the greatest Satavahana ruler.
+• He defeated the Shakas, Pahlavas, and Yavanas, reclaiming large territories.
+• His conquests extended Satavahana power up to Magadha in the north.
+• His achievements are recorded in the Nashik Prashasti inscription — composed by his mother Gautami Balashri.
+• He is described as the "Ekabrahmana" (unique Brahmin), "Destroyer of Shakas".
+
+📌 Source: Nashik Cave Inscription (Prashasti) | NCERT Ancient India | Romila Thapar — "A History of India"`
+    },
+    hi: {
+      q: "किस सातवाहन वंश के शासक को मगध क्षेत्र तक सातवाहन साम्राज्य का विस्तार करने का श्रेय है?",
+      stmts: [],
+      opts: [
+        "गौतमीपुत्र सातकर्णि",
+        "वशिष्ठीपुत्र पुलुमावि",
+        "सातकर्णि प्रथम",
+        "अपिलक"
+      ],
+      expl: `✅ उत्तर: A — गौतमीपुत्र सातकर्णि
+
+गौतमीपुत्र सातकर्णि (लगभग 78–102 ई.) सबसे महान सातवाहन शासक थे।
+• उन्होंने शकों, पह्लवों और यवनों को पराजित कर साम्राज्य का उत्तर में मगध तक विस्तार किया।
+• उनकी उपलब्धियाँ नासिक प्रशस्ति (उनकी माता गौतमी बालश्री द्वारा) में वर्णित हैं।
+• उन्हें 'एकब्राह्मण' और 'शकों का नाशक' कहा गया है।
+
+📌 स्रोत: नासिक गुफा शिलालेख (प्रशस्ति) | NCERT प्राचीन भारत`
+    },
+    ans: 0
+  },
+
+  /* Q14 ─ Ancient History / Gupta Period / Bihar */
+  {
+    qno: "Q.14",
+    topic: "Ancient — Gupta Era / Bihar", topicHi: "प्राचीन — गुप्त काल / बिहार",
+    en: {
+      q: "Where is the Buddha statue of the Gupta period obtained from Sultanganj stored at present?",
+      stmts: [],
+      opts: [
+        "Birmingham Museum",
+        "Los Angeles Museum",
+        "Patna State Museum",
+        "National Museum, New Delhi"
+      ],
+      expl: `✅ Answer: A — Birmingham Museum (Birmingham Museum and Art Gallery)
+
+The Sultanganj Buddha is a copper statue, 2.3 m tall, weighing over 500 kg — the largest substantially complete metal Buddha statue from the Gupta–Pala transitional period (500–700 CE).
+
+• Found in 1861 near Sultanganj railway station, Bhagalpur district, Bihar.
+• Discovered during railway construction by engineer E.B. Harris.
+• Sent to Birmingham; donated by Samuel Thornton and placed in the museum in 1864.
+• It is now the most prized possession of the Birmingham Museum and Art Gallery (BMAG), England.
+
+📌 Source: Wikipedia — Sultanganj Buddha | Birmingham Museum and Art Gallery | ASI Bihar records`
+    },
+    hi: {
+      q: "सुल्तानगंज से प्राप्त गुप्त काल की बुद्ध प्रतिमा वर्तमान में कहाँ संरक्षित है?",
+      stmts: [],
+      opts: [
+        "बर्मिंघम संग्रहालय",
+        "लॉस एंजेलेस संग्रहालय",
+        "पटना राज्य संग्रहालय",
+        "राष्ट्रीय संग्रहालय, नई दिल्ली"
+      ],
+      expl: `✅ उत्तर: A — बर्मिंघम संग्रहालय (Birmingham Museum and Art Gallery)
+
+सुल्तानगंज बुद्ध एक तांबे की प्रतिमा है — 2.3 मीटर ऊँची, 500 किग्रा से अधिक भारी — गुप्त-पाल संक्रमणकालीन काल (500–700 ई.) की।
+
+• 1861 में बिहार के भागलपुर जिले के सुल्तानगंज रेलवे स्टेशन के पास मिली।
+• रेलवे इंजीनियर ई.बी. हैरिस ने इसे खोजा।
+• सैमुएल थॉर्नटन ने 1864 में इसे बर्मिंघम संग्रहालय को दान किया।
+• यह अब बर्मिंघम म्यूजियम एंड आर्ट गैलरी (BMAG), इंग्लैंड का सबसे मूल्यवान संग्रह है।
+
+📌 स्रोत: Wikipedia — Sultanganj Buddha | Bihar Museum | ASI`
+    },
+    ans: 0
+  },
+
+  /* Q15 ─ Medieval History / Delhi Sultanate */
+  {
+    qno: "Q.15",
+    topic: "Medieval — Delhi Sultanate", topicHi: "मध्यकालीन — दिल्ली सल्तनत",
+    en: {
+      q: "Among the dynasties of Delhi Sultanate — Slave, Khilji, Tughlaq, Sayyid and Lodhi — which dynasties had the longest and the shortest period of rule?",
+      stmts: [],
+      opts: [
+        "Slave and Khilji",
+        "Slave and Tughlaq",
+        "Tughlaq and Khilji",
+        "Lodhi and Sayyid"
+      ],
+      expl: `✅ Answer: C — Tughlaq (longest) and Khilji (shortest)
+
+Duration of each Delhi Sultanate dynasty:
+• Slave dynasty     : 1206–1290 CE  →  84 years
+• Khilji dynasty    : 1290–1320 CE  →  30 years  ← SHORTEST
+• Tughlaq dynasty   : 1320–1414 CE  →  94 years  ← LONGEST
+• Sayyid dynasty    : 1414–1451 CE  →  37 years
+• Lodhi dynasty     : 1451–1526 CE  →  75 years
+
+So: Tughlaq = longest (94 yrs) | Khilji = shortest (30 yrs).
+
+📌 Source: NCERT Medieval India | Satish Chandra — "Medieval India: Sultanate Period"`
+    },
+    hi: {
+      q: "दिल्ली सल्तनत के राजवंशों में — गुलाम, खिलजी, तुगलक, सैयद और लोदी — किस राजवंश का शासन सबसे लंबा और सबसे छोटा रहा?",
+      stmts: [],
+      opts: [
+        "गुलाम और खिलजी",
+        "गुलाम और तुगलक",
+        "तुगलक और खिलजी",
+        "लोदी और सैयद"
+      ],
+      expl: `✅ उत्तर: C — तुगलक (सबसे लंबा) और खिलजी (सबसे छोटा)
+
+प्रत्येक राजवंश की अवधि:
+• गुलाम वंश    : 1206–1290 ई.  →  84 वर्ष
+• खिलजी वंश   : 1290–1320 ई.  →  30 वर्ष  ← सबसे छोटा
+• तुगलक वंश    : 1320–1414 ई.  →  94 वर्ष  ← सबसे लंबा
+• सैयद वंश     : 1414–1451 ई.  →  37 वर्ष
+• लोदी वंश     : 1451–1526 ई.  →  75 वर्ष
+
+अतः: तुगलक = सबसे लंबा (94 वर्ष) | खिलजी = सबसे छोटा (30 वर्ष)।
+
+📌 स्रोत: NCERT मध्यकालीन भारत | सतीश चंद्र — "मध्यकालीन भारत: सल्तनत काल"`
+    },
+    ans: 2
+  },
+
+  /* Q16 ─ Medieval History / Mughal — Akbar */
+  {
+    qno: "Q.16",
+    topic: "Medieval — Mughal (Akbar)", topicHi: "मध्यकालीन — मुगल (अकबर)",
+    en: {
+      q: "The religion started by Akbar is called \"Tauheed-e-Ilahi\". What is the meaning of this?",
+      stmts: [],
+      opts: [
+        "Atheism",
+        "Divine Monotheism",
+        "Pantheism",
+        "None of these"
+      ],
+      expl: `✅ Answer: B — Divine Monotheism
+
+Din-i-Ilahi (also called Tauheed-e-Ilahi) means "Divine Faith" or "Divine Monotheism."
+• 'Tauheed' (توحيد) = Monotheism — belief in the oneness of God.
+• 'Ilahi' (الهي) = Divine / of God.
+• Akbar introduced this syncretic religion in 1582, blending elements of Islam, Hinduism, Zoroastrianism, Christianity, and Jainism.
+• It was not a mass religion — only a few nobles adopted it.
+• Abul Fazl and Birbal were among the followers.
+
+📌 Source: Abul Fazl — "Akbarnama" | NCERT Medieval India | Satish Chandra`
+    },
+    hi: {
+      q: "अकबर द्वारा शुरू किए गए धर्म को 'तौहीद-ए-इलाही' कहा जाता है। इसका क्या अर्थ है?",
+      stmts: [],
+      opts: [
+        "नास्तिकता",
+        "ईश्वरीय एकेश्वरवाद",
+        "सर्वेश्वरवाद",
+        "इनमें से कोई नहीं"
+      ],
+      expl: `✅ उत्तर: B — ईश्वरीय एकेश्वरवाद
+
+दीन-ए-इलाही (तौहीद-ए-इलाही) का अर्थ है "ईश्वरीय विश्वास" या "ईश्वरीय एकेश्वरवाद।"
+• 'तौहीद' = एकेश्वरवाद (ईश्वर की एकता में विश्वास)।
+• 'इलाही' = ईश्वरीय / ईश्वर से संबंधित।
+• अकबर ने 1582 में इस समन्वयवादी धर्म की शुरुआत की — इसमें इस्लाम, हिंदू, पारसी, ईसाई और जैन धर्म के तत्व थे।
+• यह जन-साधारण का धर्म नहीं था; केवल कुछ दरबारियों ने इसे अपनाया।
+• अबुल फजल और बीरबल इसके अनुयायी थे।
+
+📌 स्रोत: अबुल फजल — "अकबरनामा" | NCERT मध्यकालीन भारत`
+    },
+    ans: 1
+  },
+
+  /* Q17 ─ Medieval History / Mughal — Aurangzeb */
+  {
+    qno: "Q.17",
+    topic: "Medieval — Mughal (Aurangzeb)", topicHi: "मध्यकालीन — मुगल (औरंगजेब)",
+    en: {
+      q: "For what specific purpose did Aurangzeb appoint an officer named 'Muhat Sib' in the Mughal administration?",
+      stmts: [],
+      opts: [
+        "To give grants to Muslim scholars",
+        "For the control of the Revenue Department",
+        "To destroy Hindu temples",
+        "To deliver justice according to Islamic law"
+      ],
+      expl: `✅ Answer: D — To deliver justice according to Islamic law
+
+'Muhtasib' (Muhat Sib) was a Censor of Public Morals appointed by Aurangzeb.
+• Their primary duty was to ensure people lived according to Islamic (Quranic/Sharia) law.
+• They enforced bans on: music in public, wine, gambling, and other un-Islamic practices.
+• They also supervised markets and ensured correct weights/measures (Sharia trade ethics).
+• Under Aurangzeb, their role shifted heavily towards moral and religious policing — enforcing Sharia strictness throughout the empire.
+
+📌 Source: Wikipedia — Muhtasib | IGNOU Medieval History Unit-14 | EduRev UPSC — Muhtasib role`
+    },
+    hi: {
+      q: "औरंगजेब ने मुगल प्रशासन में 'मुहत सिब' नामक अधिकारी की नियुक्ति किस विशेष उद्देश्य से की थी?",
+      stmts: [],
+      opts: [
+        "मुस्लिम विद्वानों को अनुदान देने के लिए",
+        "राजस्व विभाग के नियंत्रण के लिए",
+        "हिन्दू मंदिरों को नष्ट करने के लिए",
+        "इस्लामी कानून के अनुसार न्याय करने के लिए"
+      ],
+      expl: `✅ उत्तर: D — इस्लामी कानून के अनुसार न्याय करने के लिए
+
+'मुहतसिब' (Muhtasib) लोक नैतिकता का सेंसर/निरीक्षक था जिसे औरंगजेब ने नियुक्त किया।
+• उसका मुख्य कार्य: यह सुनिश्चित करना कि लोग इस्लामी (कुरानी/शरिया) कानून के अनुसार जीवन जिएं।
+• उसने संगीत, शराब, जुआ जैसी गैर-इस्लामी गतिविधियों पर रोक लगाई।
+• बाजारों में निगरानी और नैतिक-धार्मिक आचरण का प्रवर्तन भी उसका काम था।
+• औरंगजेब के काल में मुहतसिब की भूमिका धार्मिक पुलिसिंग तक विस्तृत हो गई।
+
+📌 स्रोत: Wikipedia — Muhtasib | IGNOU मध्यकालीन भारत Unit-14 | NCERT`
+    },
+    ans: 3
+  },
+
+  /* Q18 ─ Medieval History / Sher Shah Suri */
+  {
+    qno: "Q.18",
+    topic: "Medieval — Sher Shah Suri", topicHi: "मध्यकालीन — शेरशाह सूरी",
+    en: {
+      q: "What is the script of the coins issued by Sher Shah Suri?",
+      stmts: [],
+      opts: [
+        "Persian and Sanskrit",
+        "Persian and Arabic",
+        "Arabic and Devanagari",
+        "Persian and Nagari"
+      ],
+      expl: `✅ Answer: D — Persian and Nagari (Devanagari)
+
+Sher Shah Suri (1540–1545 CE) reformed the currency system and introduced the silver Rupiya (rupee).
+• The coins carried inscriptions primarily in Persian/Arabic script (Islamic Kalima, names of four Khalifas).
+• On some coins, the king's name was also written in Nagari (Devanagari) script — "Sri Sher Shah."
+• This was a deliberate policy to win goodwill of the Hindu majority population.
+• V.A. Smith noted: "his silver rupees often have the king's name in Nagari characters in addition."
+
+📌 Source: V.A. Smith — "Coins of Sher Shah Suri" | Important India | Bihar Museum official records`
+    },
+    hi: {
+      q: "शेरशाह सूरी द्वारा जारी सिक्कों की लिपि क्या है?",
+      stmts: [],
+      opts: [
+        "फारसी और संस्कृत",
+        "फारसी और अरबी",
+        "अरबी और देवनागरी",
+        "फारसी और नागरी"
+      ],
+      expl: `✅ उत्तर: D — फारसी और नागरी (देवनागरी)
+
+शेरशाह सूरी (1540–1545 ई.) ने मुद्रा प्रणाली में सुधार कर चाँदी का 'रुपिया' (रुपया) जारी किया।
+• सिक्कों पर फारसी/अरबी लिपि में इस्लामी कलमा और चार खलीफाओं के नाम थे।
+• कुछ सिक्कों पर राजा का नाम नागरी (देवनागरी) लिपि में भी लिखा था — "श्री शेर शाह।"
+• यह हिंदू जनता का समर्थन पाने की जानबूझकर की गई नीति थी।
+• वी.ए. स्मिथ ने लिखा: "उनके चाँदी के रुपयों पर अक्सर राजा का नाम नागरी अक्षरों में भी अंकित होता था।"
+
+📌 स्रोत: वी.ए. स्मिथ | Bihar Museum | Important India — Coins of Sher Shah Suri`
+    },
+    ans: 3
+  },
+
+  /* Q19 ─ Modern History / 1857 / Queen Victoria's Proclamation */
+  {
+    qno: "Q.19",
+    topic: "Modern — British India (1858)", topicHi: "आधुनिक — ब्रिटिश भारत (1858)",
+    en: {
+      q: "What were the main points of Queen Victoria's proclamation of November 1, 1858?",
+      stmts: [
+        "No desire to expand the empire",
+        "Religious tolerance",
+        "Complete independence to native rulers and nawabs",
+        "No pardon to rebels"
+      ],
+      opts: [
+        "(1) and (2) are correct",
+        "(2) and (4) are correct",
+        "(3) and (1) are correct",
+        "(4) and (3) are correct"
+      ],
+      expl: `✅ Answer: A — (1) and (2) are correct
+
+Analysis of each statement:
+
+• Stmt (1) ✅ CORRECT — The proclamation disclaimed any intention to expand or annex Indian territories (Doctrine of Lapse was abolished).
+
+• Stmt (2) ✅ CORRECT — Religious non-interference and tolerance were promised; the British pledged not to interfere in Indian religious customs.
+
+• Stmt (3) ❌ WRONG — NOT "complete independence." Native rulers kept their titles but remained under British suzerainty/paramountcy — not independent.
+
+• Stmt (4) ❌ WRONG — In FACT, the proclamation offered GENERAL PARDON (amnesty) to most rebels, EXCEPT those directly involved in killing British subjects.
+
+📌 Source: Wikisource — Queen Victoria's Proclamation (1858 original text) | NCERT Modern India | Examrace.com`
+    },
+    hi: {
+      q: "1 नवंबर 1858 की महारानी विक्टोरिया की घोषणा के मुख्य बिंदु क्या थे?",
+      stmts: [
+        "साम्राज्य के विस्तार की कोई इच्छा नहीं",
+        "धार्मिक सहिष्णुता",
+        "देशी शासकों और नवाबों को पूर्ण स्वतंत्रता",
+        "विद्रोहियों को कोई क्षमा नहीं"
+      ],
+      opts: [
+        "(1) और (2) सही हैं",
+        "(2) और (4) सही हैं",
+        "(3) और (1) सही हैं",
+        "(4) और (3) सही हैं"
+      ],
+      expl: `✅ उत्तर: A — (1) और (2) सही हैं
+
+प्रत्येक कथन का विश्लेषण:
+
+• कथन (1) ✅ सही — घोषणापत्र में भारतीय क्षेत्रों के विस्तार/विलय की कोई इच्छा नहीं जताई गई (व्यपगत सिद्धांत समाप्त)।
+
+• कथन (2) ✅ सही — धार्मिक सहिष्णुता और अहस्तक्षेप का वादा किया गया।
+
+• कथन (3) ❌ गलत — "पूर्ण स्वतंत्रता" नहीं दी गई। देशी शासक ब्रिटिश अधीनता में रहे — स्वतंत्र नहीं।
+
+• कथन (4) ❌ गलत — वास्तव में घोषणापत्र में अधिकांश विद्रोहियों को माफी (amnesty) दी गई, केवल ब्रिटिश हत्या में प्रत्यक्ष रूप से शामिल लोगों को नहीं।
+
+📌 स्रोत: Wikisource — Queen Victoria's Proclamation (मूल पाठ) | NCERT आधुनिक भारत | TNPSC notes`
+    },
+    ans: 0
+  },
+
+  /* Q20 ─ Modern History / British Expansion */
+  {
+    qno: "Q.20",
+    topic: "Modern — British Expansion", topicHi: "आधुनिक — ब्रिटिश विस्तार",
+    en: {
+      q: "Which British administrator is credited with extending the boundaries of the British Empire from the Irrawaddy River to the Indus River?",
+      stmts: [],
+      opts: [
+        "Warren Hastings",
+        "William Bentinck",
+        "Cornwallis",
+        "Lord Dalhousie"
+      ],
+      expl: `✅ Answer: D — Lord Dalhousie
+
+Lord Dalhousie (Governor-General 1848–1856) extended British India to its maximum territorial extent:
+• Annexed Punjab (1849) → up to the Indus River in the west.
+• Annexed Lower Burma/Pegu (1852) → up to the Irrawaddy River in the east.
+• Also used the Doctrine of Lapse to annex Satara (1848), Nagpur (1853), Jhansi (1854), Awadh (1856).
+• His aggressive annexation policy was a major cause of the 1857 revolt.
+
+📌 Source: NCERT Modern India | Bipan Chandra — "India's Struggle for Independence" | Satish Chandra`
+    },
+    hi: {
+      q: "किस ब्रिटिश प्रशासक को इरावती नदी से सिंधु नदी तक ब्रिटिश साम्राज्य की सीमाओं का विस्तार करने का श्रेय है?",
+      stmts: [],
+      opts: [
+        "वारेन हेस्टिंग्स",
+        "विलियम बेंटिंक",
+        "कॉर्नवालिस",
+        "लॉर्ड डलहौजी"
+      ],
+      expl: `✅ उत्तर: D — लॉर्ड डलहौजी
+
+लॉर्ड डलहौजी (गवर्नर-जनरल 1848–1856) ने ब्रिटिश भारत को अधिकतम क्षेत्रीय विस्तार तक पहुँचाया:
+• पंजाब विलय (1849) → पश्चिम में सिंधु नदी तक।
+• निचला बर्मा/पेगू विलय (1852) → पूर्व में इरावती नदी तक।
+• व्यपगत सिद्धांत (Doctrine of Lapse) से सतारा (1848), नागपुर (1853), झाँसी (1854), अवध (1856) भी हड़पे।
+• उनकी आक्रामक विलय नीति 1857 के विद्रोह का प्रमुख कारण बनी।
+
+📌 स्रोत: NCERT आधुनिक भारत | बिपिन चंद्र | सतीश चंद्र`
+    },
+    ans: 3
+  }
+];
+
+/* ─────────────────────────────────────────────
+   STATE + CONSTANTS
+───────────────────────────────────────────── */
+const N      = Qs.length;   // 10
+const LABELS = ['A','B','C','D'];
+const TIMER_SECS = 60;      // seconds per question
+
+let cur   = 0;
+let sel   = new Array(N).fill(null);
+let score = 0;
+let lang  = 'en';
+
+/* timer state */
+let timerInterval = null;
+let timeLeft      = TIMER_SECS;
+let totalTimeTaken = 0;   // cumulative seconds used
+
+/* ─────────────────────────────────────────────
+   LANGUAGE SWITCH
+───────────────────────────────────────────── */
+function setLang(l) {
+  lang = l;
+  document.getElementById('btn-en').className = l === 'en' ? 'active' : '';
+  document.getElementById('btn-hi').className = l === 'hi' ? 'active' : '';
+  render();
+}
+
+/* ─────────────────────────────────────────────
+   TIMER
+───────────────────────────────────────────── */
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = TIMER_SECS;
+  updateTimerUI();
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerUI();
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      timeExpired();
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  /* add used time to total */
+  totalTimeTaken += (TIMER_SECS - timeLeft);
+}
+
+function updateTimerUI() {
+  const pill = document.getElementById('timer-pill');
+  const val  = document.getElementById('timer-val');
+  val.textContent = timeLeft;
+  pill.className = 'timer-pill';
+  if (timeLeft <= 10) pill.classList.add('alarm');
+  else if (timeLeft <= 20) pill.classList.add('warn');
+}
+
+function timeExpired() {
+  /* count as skipped (no answer) — reveal correct */
+  totalTimeTaken += TIMER_SECS;
+  if (sel[cur] === null) {
+    sel[cur] = -1;   // mark as timed-out (not answered)
+    revealOnly();
+    const ex = document.getElementById('q-expl');
+    ex.textContent = Qs[cur][lang].expl;
+    ex.classList.add('show');
+    document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+  }
+}
+
+function revealOnly() {
+  const ans = Qs[cur].ans;
+  for (let i = 0; i < 4; i++) {
+    const b = document.getElementById('op' + i);
+    if (!b) continue;
+    if (i === ans) b.classList.add('reveal');
+  }
+}
+
+/* ─────────────────────────────────────────────
+   RENDER
+───────────────────────────────────────────── */
+function render() {
+  const q   = Qs[cur];
+  const d   = q[lang];
+  const pct = Math.round((cur + 1) / N * 100);
+
+  /* progress */
+  document.getElementById('prog-label').textContent =
+    (lang === 'hi' ? 'प्रश्न ' : 'Question ') + (cur + 1) +
+    (lang === 'hi' ? ' / ' + N : ' of ' + N);
+  document.getElementById('prog-pct').textContent  = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+
+  /* topic + question number */
+  document.getElementById('topic-pill').textContent = lang === 'hi' ? q.topicHi : q.topic;
+  document.getElementById('qno-tag').textContent    = q.qno;
+
+  /* question text */
+  document.getElementById('q-text').textContent = d.q;
+
+  /* statements */
+  const sl = document.getElementById('q-stmts');
+  if (d.stmts.length) {
+    sl.style.display = 'block';
+    sl.innerHTML = d.stmts
+      .map((s, i) => `<li><span class="si">${i + 1}.</span>${s}</li>`)
+      .join('');
+  } else {
+    sl.style.display = 'none';
+    sl.innerHTML = '';
+  }
+
+  /* options */
+  const ol = document.getElementById('q-opts');
+  ol.innerHTML = d.opts
+    .map((o, i) =>
+      `<button class="opt" id="op${i}" onclick="pick(${i})"
+        ${sel[cur] !== null ? 'disabled' : ''}>
+        <span class="lbl">(${LABELS[i]})</span><span>${o}</span>
+       </button>`
+    ).join('');
+
+  /* explanation */
+  const ex = document.getElementById('q-expl');
+  ex.textContent = d.expl;
+  ex.className   = 'expl';
+
+  if (sel[cur] !== null) {
+    /* already answered (or timed out) — show result + explanation */
+    if (sel[cur] === -1) {
+      revealOnly();
+    } else {
+      applyResult(sel[cur]);
+    }
+    ex.classList.add('show');
+    /* make sure options remain disabled */
+    document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+    /* stop timer since question answered */
+    clearInterval(timerInterval);
+    updateTimerUI();
+  } else {
+    /* fresh question — start timer */
+    startTimer();
+  }
+
+  /* nav buttons */
+  document.getElementById('prev-btn').disabled = cur === 0;
+  const nb = document.getElementById('next-btn');
+  nb.textContent = cur === N - 1
+    ? (lang === 'hi' ? 'परिणाम देखें ✓' : 'See Results ✓')
+    : (lang === 'hi' ? 'अगला →'        : 'Next →');
+
+  /* update header sub-text on lang switch */
+  document.getElementById('top-p').textContent =
+    N + (lang === 'hi' ? ' प्रश्न · द्विभाषी · EN / हि' : ' questions · bilingual · EN / हि');
+}
+
+/* ─────────────────────────────────────────────
+   PICK
+───────────────────────────────────────────── */
+function pick(i) {
+  if (sel[cur] !== null) return;
+  stopTimer();
+  sel[cur] = i;
+  if (i === Qs[cur].ans) score++;
+  applyResult(i);
+  document.getElementById('q-expl').classList.add('show');
+  document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+}
+
+/* ─────────────────────────────────────────────
+   APPLY RESULT COLOURS
+───────────────────────────────────────────── */
+function applyResult(picked) {
+  const ans = Qs[cur].ans;
+  for (let i = 0; i < 4; i++) {
+    const b = document.getElementById('op' + i);
+    if (!b) continue;
+    if (i === ans && i === picked) b.classList.add('correct');
+    else if (i === picked)         b.classList.add('wrong');
+    else if (i === ans)            b.classList.add('reveal');
+  }
+}
+
+/* ─────────────────────────────────────────────
+   NAVIGATION
+───────────────────────────────────────────── */
+function nextQ() {
+  if (cur < N - 1) { cur++; render(); }
+  else showScore();
+}
+function prevQ() {
+  if (cur > 0) { cur--; render(); }
+}
+
+/* ─────────────────────────────────────────────
+   SCORE SCREEN
+───────────────────────────────────────────── */
+function showScore() {
+  stopTimer();
+  document.getElementById('quiz-main').style.display = 'none';
+  const sw = document.getElementById('score-wrap');
+  sw.classList.add('show');
+
+  document.getElementById('s-num').textContent = score;
+
+  const pct  = (score / N) * 100;
+  const isHi = lang === 'hi';
+  let t, s;
+  if (pct >= 80) {
+    t = isHi ? 'शानदार! 🎯' : 'Excellent! 🎯';
+    s = isHi ? 'BPSC/UPSC स्तर की तैयारी।' : 'Top BPSC preparation level!';
+  } else if (pct >= 50) {
+    t = isHi ? 'अच्छा प्रयास! 👍' : 'Good attempt! 👍';
+    s = isHi ? 'स्पष्टीकरण पुनः पढ़ें।' : 'Review the explanations carefully.';
+  } else {
+    t = isHi ? 'और अभ्यास करें! 📚' : 'Keep practising! 📚';
+    s = isHi ? 'इतिहास की मूल अवधारणाएं दोहराएं।' : 'Revise core history concepts.';
+  }
+  document.getElementById('s-title').textContent = t;
+  document.getElementById('s-sub').textContent   = s;
+
+  /* time taken */
+  const mins = Math.floor(totalTimeTaken / 60);
+  const secs = totalTimeTaken % 60;
+  const timeStr = mins > 0
+    ? `${mins}m ${secs}s`
+    : `${secs}s`;
+  document.getElementById('s-time').innerHTML =
+    (isHi ? 'कुल समय: ' : 'Total time: ') +
+    `<span>${timeStr}</span>`;
+
+  /* restart button text */
+  document.getElementById('restart-btn').textContent =
+    isHi ? 'फिर से शुरू करें' : 'Restart Quiz';
+
+  /* per-topic bars */
+  const topics = [...new Set(Qs.map(q => lang === 'hi' ? q.topicHi : q.topic))];
+  let barsHTML = '';
+  topics.forEach(tp => {
+    const indices = Qs
+      .map((q, i) => (lang === 'hi' ? q.topicHi : q.topic) === tp ? i : -1)
+      .filter(i => i >= 0);
+    const correct = indices.filter(i => sel[i] === Qs[i].ans).length;
+    const total   = indices.length;
+    const pct2    = Math.round((correct / total) * 100);
+    barsHTML +=
+      `<div class="bar-row">
+        <span class="bar-label">${tp}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct2}%"></div></div>
+        <span class="bar-val">${correct}/${total}</span>
+       </div>`;
+  });
+  document.getElementById('s-bars').innerHTML = barsHTML;
+}
+
+/* ─────────────────────────────────────────────
+   RESTART
+───────────────────────────────────────────── */
+function restart() {
+  cur            = 0;
+  sel            = new Array(N).fill(null);
+  score          = 0;
+  totalTimeTaken = 0;
+  clearInterval(timerInterval);
+  document.getElementById('quiz-main').style.display = 'block';
+  document.getElementById('score-wrap').classList.remove('show');
+  render();
+}
+
+/* ─────────────────────────────────────────────
+   INIT
+───────────────────────────────────────────── */
+render();
+</script>
+</body>
+</html>
