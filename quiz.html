@@ -106,6 +106,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:24px 32px
 .info-strip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:32px;display:flex;align-items:flex-start;gap:12px;}
 .is-text{font-size:13px;color:var(--muted);line-height:1.6;}
 .is-text strong{color:var(--text);}
+
+.exam-group{margin-bottom:8px;}
+.eg-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;margin-top:32px;}
+.eg-badge{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:5px 14px;border-radius:5px;border:1px solid;letter-spacing:1px;}
+.eg-line{flex:1;height:1px;background:var(--border);}
+.eg-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);}
 @media(max-width:768px){.page-header,.filter-bar,.main{padding-left:16px;padding-right:16px;}}
 </style>
 </head>
@@ -189,58 +195,97 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:24px 32px
   <div class="mi">
     <div class="info-strip">
       <span style="font-size:20px">💡</span>
-      <div class="is-text"><strong>How to use:</strong> Open a quiz → Toggle EN / हि → Answer within 60 seconds → View score and explanation. Select language at the start of each quiz.</div>
+      <div class="is-text"><strong>How to use:</strong> Open a quiz → Toggle EN / हि → Answer within 60 seconds → View score and explanation.</div>
     </div>
-    <div class="sg" data-subject="history">
-      <div class="sg-head"><span class="sg-lbl" style="color:#c084fc">🏛️ History</span><div class="sg-line"></div><span class="sg-ct">1 SET LIVE</span></div>
-      <div class="qgrid">
-        <a class="qc" href="BPSC_LDC_Pre2025_History_Quiz_1.html" style="--qclr:#c084fc">
-          <div class="qc-icon">🏛️</div><div class="qc-title">History — Set 1</div><div class="qc-meta">Ancient + Medieval + Modern India</div>
-          <div class="qtags"><span class="qtag">Ancient</span><span class="qtag">Medieval</span><span class="qtag">Modern</span><span class="qtag">PYQ</span><span class="qtag">Bihar</span></div>
-          <div class="qc-foot"><span class="qc-qs">⏱ 60s/question</span><span class="qc-go">Start →</span></div>
-        </a>
-        <div class="qc qc-soon" style="--qclr:#c084fc"><span class="spill">SOON</span>
-          <div class="qc-icon">🏛️</div><div class="qc-title">History — Set 2</div><div class="qc-meta">Freedom Movement focus</div>
-          <div class="qtags"><span class="qtag">Freedom</span><span class="qtag">Bihar</span><span class="qtag">PYQ</span></div>
-          <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
+
+    <!-- BPSC SECTION -->
+    <div class="exam-group" data-subject="bpsc">
+      <div class="eg-head">
+        <span class="eg-badge" style="background:rgba(0,194,255,0.1);border-color:rgba(0,194,255,0.3);color:var(--accent)">72 BPSC</span>
+        <div class="eg-line"></div>
+        <span class="eg-sub">Timed Practice Quiz · 60s per question</span>
+      </div>
+      <div class="sg" data-subject="history">
+        <div class="sg-head"><span class="sg-lbl" style="color:#c084fc">🏛️ History</span><div class="sg-line"></div><span class="sg-ct">1 SET LIVE</span></div>
+        <div class="qgrid">
+          <a class="qc" href="BPSC_LDC_Pre2025_History_Quiz_1.html" style="--qclr:#c084fc">
+            <div class="qc-icon">🏛️</div><div class="qc-title">History — Set 1</div><div class="qc-meta">Ancient + Medieval + Modern India</div>
+            <div class="qtags"><span class="qtag">Ancient</span><span class="qtag">Medieval</span><span class="qtag">Modern</span><span class="qtag">PYQ</span></div>
+            <div class="qc-foot"><span class="qc-qs">⏱ 60s/question</span><span class="qc-go">Start →</span></div>
+          </a>
+          <div class="qc qc-soon" style="--qclr:#c084fc"><span class="spill">SOON</span>
+            <div class="qc-icon">🏛️</div><div class="qc-title">History — Set 2</div><div class="qc-meta">Freedom Movement focus</div>
+            <div class="qtags"><span class="qtag">Freedom</span><span class="qtag">Bihar</span></div>
+            <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="sg" data-subject="geography">
+        <div class="sg-head"><span class="sg-lbl" style="color:#00c2ff">🌍 Geography</span><div class="sg-line"></div><span class="sg-ct">1 SET LIVE</span></div>
+        <div class="qgrid">
+          <a class="qc" href="BPSC_LDC_Pre2025_Geography_Quiz.html" style="--qclr:#00c2ff">
+            <div class="qc-icon">🌍</div><div class="qc-title">Geography — Set 1</div><div class="qc-meta">India + Bihar + World Geography</div>
+            <div class="qtags"><span class="qtag">India</span><span class="qtag">Bihar</span><span class="qtag">World</span><span class="qtag">PYQ</span></div>
+            <div class="qc-foot"><span class="qc-qs">⏱ 60s/question</span><span class="qc-go">Start →</span></div>
+          </a>
+          <div class="qc qc-soon" style="--qclr:#00c2ff"><span class="spill">SOON</span>
+            <div class="qc-icon">🌍</div><div class="qc-title">Geography — Set 2</div><div class="qc-meta">Bihar Geography special</div>
+            <div class="qtags"><span class="qtag">Bihar</span><span class="qtag">Rivers</span></div>
+            <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="sg" data-subject="polity">
+        <div class="sg-head"><span class="sg-lbl" style="color:#00e676">⚖️ Polity</span><div class="sg-line"></div><span class="sg-ct">COMING SOON</span></div>
+        <div class="qgrid">
+          <div class="qc qc-soon" style="--qclr:#00e676"><span class="spill">SOON</span>
+            <div class="qc-icon">⚖️</div><div class="qc-title">Polity — Set 1</div><div class="qc-meta">Constitution + Bihar Polity</div>
+            <div class="qtags"><span class="qtag">Constitution</span><span class="qtag">Bihar</span></div>
+            <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="sg" data-subject="economy">
+        <div class="sg-head"><span class="sg-lbl" style="color:#f5c542">📈 Economy</span><div class="sg-line"></div><span class="sg-ct">COMING SOON</span></div>
+        <div class="qgrid">
+          <div class="qc qc-soon" style="--qclr:#f5c542"><span class="spill">SOON</span>
+            <div class="qc-icon">📈</div><div class="qc-title">Economy — Set 1</div><div class="qc-meta">Bihar + India Economy</div>
+            <div class="qtags"><span class="qtag">Bihar</span><span class="qtag">India</span></div>
+            <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="sg" data-subject="geography">
-      <div class="sg-head"><span class="sg-lbl" style="color:#00c2ff">🌍 Geography</span><div class="sg-line"></div><span class="sg-ct">1 SET LIVE</span></div>
-      <div class="qgrid">
-        <a class="qc" href="BPSC_LDC_Pre2025_Geography_Quiz.html" style="--qclr:#00c2ff">
-          <div class="qc-icon">🌍</div><div class="qc-title">Geography — Set 1</div><div class="qc-meta">India + Bihar + World Geography</div>
-          <div class="qtags"><span class="qtag">India</span><span class="qtag">Bihar</span><span class="qtag">World</span><span class="qtag">PYQ</span></div>
-          <div class="qc-foot"><span class="qc-qs">⏱ 60s/question</span><span class="qc-go">Start →</span></div>
-        </a>
-        <div class="qc qc-soon" style="--qclr:#00c2ff"><span class="spill">SOON</span>
-          <div class="qc-icon">🌍</div><div class="qc-title">Geography — Set 2</div><div class="qc-meta">Bihar Geography special</div>
-          <div class="qtags"><span class="qtag">Bihar</span><span class="qtag">Rivers</span><span class="qtag">PYQ</span></div>
-          <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
+
+    <!-- UPSC SECTION -->
+    <div class="exam-group" data-subject="upsc" style="margin-top:16px;">
+      <div class="eg-head">
+        <span class="eg-badge" style="background:rgba(245,197,66,0.1);border-color:rgba(245,197,66,0.3);color:var(--gold)">UPSC</span>
+        <div class="eg-line"></div>
+        <span class="eg-sub">Chapter-wise PYQ 2013–2025 · With Explanations</span>
+      </div>
+      <div class="sg" data-subject="history">
+        <div class="sg-head"><span class="sg-lbl" style="color:#c084fc">🏛️ History</span><div class="sg-line"></div><span class="sg-ct">1 SET LIVE</span></div>
+        <div class="qgrid">
+          <a class="qc" href="pyq-history-gs.html" style="--qclr:#c084fc">
+            <div class="qc-icon">📜</div><div class="qc-title">GS History PYQ</div><div class="qc-meta">2013–2025 · 29 Questions · 3 Chapters</div>
+            <div class="qtags"><span class="qtag">18th Century</span><span class="qtag">Reform</span><span class="qtag">1857</span><span class="qtag">Solved</span></div>
+            <div class="qc-foot"><span class="qc-qs">With explanations</span><span class="qc-go">View →</span></div>
+          </a>
+          <div class="qc qc-soon" style="--qclr:#00c2ff"><span class="spill">SOON</span>
+            <div class="qc-icon">🌍</div><div class="qc-title">GS Geography PYQ</div><div class="qc-meta">2013–2025 · Chapter-wise</div>
+            <div class="qtags"><span class="qtag">Physical</span><span class="qtag">India</span><span class="qtag">World</span></div>
+            <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
+          </div>
+          <div class="qc qc-soon" style="--qclr:#00e676"><span class="spill">SOON</span>
+            <div class="qc-icon">⚖️</div><div class="qc-title">GS Polity PYQ</div><div class="qc-meta">2013–2025 · Chapter-wise</div>
+            <div class="qtags"><span class="qtag">Constitution</span><span class="qtag">Parliament</span></div>
+            <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="sg" data-subject="polity">
-      <div class="sg-head"><span class="sg-lbl" style="color:#00e676">⚖️ Polity</span><div class="sg-line"></div><span class="sg-ct">COMING SOON</span></div>
-      <div class="qgrid">
-        <div class="qc qc-soon" style="--qclr:#00e676"><span class="spill">SOON</span>
-          <div class="qc-icon">⚖️</div><div class="qc-title">Polity — Set 1</div><div class="qc-meta">Constitution + Bihar Polity</div>
-          <div class="qtags"><span class="qtag">Constitution</span><span class="qtag">Bihar</span><span class="qtag">PYQ</span></div>
-          <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="sg" data-subject="economy">
-      <div class="sg-head"><span class="sg-lbl" style="color:#f5c542">📈 Economy</span><div class="sg-line"></div><span class="sg-ct">COMING SOON</span></div>
-      <div class="qgrid">
-        <div class="qc qc-soon" style="--qclr:#f5c542"><span class="spill">SOON</span>
-          <div class="qc-icon">📈</div><div class="qc-title">Economy — Set 1</div><div class="qc-meta">Bihar + India Economy</div>
-          <div class="qtags"><span class="qtag">Bihar</span><span class="qtag">India</span><span class="qtag">PYQ</span></div>
-          <div class="qc-foot"><span class="qc-qs">Coming soon</span><span class="qc-go" style="color:var(--dim)">—</span></div>
-        </div>
-      </div>
-    </div>
+
   </div>
 </div>
 
